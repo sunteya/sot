@@ -1,0 +1,4 @@
+for i in $(ls $HOME/.sot/bash_completion.d); do
+	source $HOME/.sot/bash_completion.d/$i
+done
+unset i
