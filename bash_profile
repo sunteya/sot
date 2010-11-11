@@ -12,13 +12,9 @@ export rvm_pretty_print_flag=1
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 [[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.bin:$HOME/.sot/bin:$PATH
 
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
-fi
-
-if [ -f ~/.localrc ]; then
-	. ~/.localrc
 fi
 
