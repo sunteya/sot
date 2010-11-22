@@ -4,7 +4,7 @@ sot is dot files and configs for myself. based on [https://github.com/ryanb/dotf
 
 ## Installation
 
-	git clone git@github.com:sunteya/sot.git
+	git clone git@github.com:sunteya/sot.git ~/.sot
 	cd ~/.sot
 	rake install
 
