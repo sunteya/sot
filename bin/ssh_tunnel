@@ -1,0 +1,5 @@
+#ps aux | grep -v grep | grep "\-D 7070" | awk '{print $2}' | xargs kill
+#ssh -C -f -N -g -q -D 7070 $1
+
+ps aux | grep -v grep | grep autossh | grep 20000 | grep 7070 | awk '{print $2}' | xargs kill
+autossh -M 20000 -C -N -f -g -q -D 7070 $@
