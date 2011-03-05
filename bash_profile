@@ -18,6 +18,10 @@ export EDITOR="mate -w"
 export JAVA_HOME=/Library/Java/Home
 export PATH=$HOME/bin:$HOME/.bin:$PATH
 
+export HISTFILESIZE=3000
+export HISTSIZE=$HISTFILESIZE
+
+
 if [ -f ~/.bashrc ]; then
 	source ~/.bashrc
 fi
