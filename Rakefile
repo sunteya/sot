@@ -7,7 +7,8 @@ task :install do
     
     file_name = file.sub(".erb", "")
     target_file = "#{ENV['HOME']}/.#{file_name}"
-
+    
+    replace_all = false
     if File.exist?(target_file)
       if File.identical?(file, target_file)
         puts "identical ~/.#{file_name}"
