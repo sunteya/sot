@@ -11,6 +11,7 @@
 	excludesfile = ~/.gitignore
 	editor = mate -w
 	autocrlf = false
+	quotepath = false
 [apply]
 	whitespace = nowarn
 [format]
