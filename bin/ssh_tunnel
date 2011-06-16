@@ -2,4 +2,6 @@
 #ssh -C -f -N -g -q -D 7070 $@
 
 ps aux | grep -v grep | grep autossh | grep 20000 | awk '{print $2}' | xargs kill
+sleep 1
+
 autossh -M 20000 -C -N -f -g -q -D 7070 $@
