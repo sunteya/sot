@@ -1,2 +1,2 @@
 require 'capistrano_colors'
-
+default_run_options[:pty] = true
