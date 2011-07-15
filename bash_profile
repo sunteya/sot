@@ -8,7 +8,14 @@ export rvm_pretty_print_flag=1
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 [[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
 
-# .sot
+# Ruby
+BUNDLED_COMMANDS="rackup rails rake rspec ruby spork thin unicorn annotate"
+[ -f $HOME/.sot/bundler-exec.sh ] && source $HOME/.sot/bundler-exec.sh
+
+# node.js
+#export NODE_PATH="/usr/local/lib/node_modules"
+
+ #.sot
 export PATH=$HOME/.sot/bin:$PATH
 
 
