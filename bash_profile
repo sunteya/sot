@@ -4,16 +4,15 @@ export MANPATH=/usr/local/man:/usr/local/share/man:/usr/share/man:$MANPATH
 [[ -f `brew --prefix`/etc/bash_completion ]] && source `brew --prefix`/etc/bash_completion
 
 # RVM
-export rvm_pretty_print_flag=1
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-[[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
+if [ -s $HOME/.rvm/scripts/rvm ]; then
+	export rvm_pretty_print_flag=1
+	source $HOME/.rvm/scripts/rvm
+	source $rvm_path/scripts/completion
+fi
 
 # Ruby
 BUNDLED_COMMANDS="rackup rails rake rspec ruby spork thin unicorn annotate"
-[ -f $HOME/.sot/bundler-exec.sh ] && source $HOME/.sot/bundler-exec.sh
-
-# node.js
-#export NODE_PATH="/usr/local/lib/node_modules"
+[ -f $HOME/.bash/bundler-exec.sh ] && source $HOME/.bash/bundler-exec.sh
 
  #.sot
 export PATH=$HOME/.sot/bin:$PATH
@@ -27,6 +26,8 @@ export PATH=$HOME/bin:$HOME/.bin:$PATH
 
 export HISTFILESIZE=3000
 export HISTSIZE=$HISTFILESIZE
+
+[ -f $HOME/.bash/bash-prompt.sh ] && source $HOME/.bash/bash-prompt.sh
 
 
 if [ -f ~/.bashrc ]; then
