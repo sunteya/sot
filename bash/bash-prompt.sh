@@ -1,42 +1,42 @@
 function __populate_git_ps1_vars () {
-	# this relies on a bashism, so make sure you're actually using bash.
-	# specifically it relies on <<<"word".
-	local status
-	
-	__git_ps1_prompt=""
-	__git_ps1_branch=""
-	__git_ps1_status=""
-	
-	__git_ps1_staged=""
-	__git_ps1_unstaged=""
-	__git_ps1_stash=""
-	__git_ps1_untracked=""
-	__git_ps1_upstream=""
-	
-	GIT_PS1_SHOWDIRTYSTATE=1
-	GIT_PS1_SHOWSTASHSTATE=1
-	GIT_PS1_SHOWUNTRACKEDFILES=1
-	local prompt="$(__git_ps1 "%s")"
-	if test -z "$prompt"; then
+	if ! $(type __git_ps1 >/dev/null 2>&1); then
 		return
 	fi
 	
-	__git_ps1_prompt=$prompt
-	__git_ps1_branch="$(git rev-parse --symbolic-full-name --abbrev-ref=loose HEAD)"
-	__git_ps1_status=$(echo "${__git_ps1_prompt#$__git_ps1_branch}" | sed 's/^[ ]//g')
+	unset GIT_PS1_SHOWDIRTYSTATE
+	unset GIT_PS1_SHOWSTASHSTATE
+	unset GIT_PS1_SHOWUNTRACKEDFILES
+	unset GIT_PS1_SHOWUPSTREAM
+	__git_ps1_prompt="$(__git_ps1 "%s")"
+	if test -z "${__git_ps1_prompt}"; then
+		return
+	fi
 	
-	local str="$__git_ps1_status"
-	local cnt=${#str}
-	for ((i=0; i < cnt; i++)); do
-		local char="${str:$i:1}"
-		case "$char" in
-			\*) __git_ps1_unstaged="$char" ;;
-			+) __git_ps1_staged="$char" ;;
-			$) __git_ps1_stash="$char" ;;
-			%) __git_ps1_untracked="$char" ;;
-			\<|\>) __git_ps1_upstream="${__git_ps1_upstream}$char" ;;
-		esac
-	done
+	
+	__git_ps1_dirty_state=""
+	__git_ps1_stash_state=""
+	__git_ps1_untracked_state=""
+	__git_ps1_upstream_state=""
+	if [ "true" = "$(git rev-parse --is-inside-work-tree 2>/dev/null)" ]; then
+		git diff --no-ext-diff --quiet --exit-code || __git_ps1_dirty_state="*"
+		if git rev-parse --quiet --verify HEAD >/dev/null; then
+			git diff-index --cached --quiet HEAD -- || __git_ps1_dirty_state="+"
+		else
+			__git_ps1_dirty_state="#"
+		fi
+		
+		git rev-parse --verify refs/stash >/dev/null 2>&1 && __git_ps1_stash_state="$"
+		
+		if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+			__git_ps1_untracked_state="%"
+		fi
+		
+		__git_ps1_show_upstream
+		if [[ "=" != "${p}" ]]; then
+			__git_ps1_upstream_state="$p"
+		fi
+		unset p
+	fi
 }
 
         BLACK="\[\e[30m]"
@@ -61,37 +61,38 @@ function prompt_func() {
 	previous_return_value=$?;
 	
 	__populate_git_ps1_vars;
-	
 	git_prompt=""
-	if [[ -n "${__git_ps1_branch}" ]]; then
-		# echo "__git_ps1_branch: ${__git_ps1_branch}"
-		# echo "===================="
-		# echo "${__git_ps1_staged}"
-		# echo "${__git_ps1_unstaged}"
-		# echo "${__git_ps1_stash}"
-		# echo "${__git_ps1_untracked}"
-		# echo "${__git_ps1_upstream}"
-		# echo "===================="
+	if [[ -n "${__git_ps1_prompt}" ]]; then
+		git_prompt_color=$GREEN
+		git_status=""
 		
-		git_status_color=""
-		
-		if [[ -n "${__git_ps1_staged}" ]]; then
-			git_status_color=$YELLOW
-		fi
-		if [[ -n "${__git_ps1_untracked}" ]]; then
-			git_status_color=$RED
-		fi
-		if [[ -n "${__git_ps1_unstaged}" ]]; then
-			git_status_color=$RED
+		if [[ -n "${__git_ps1_upstream_state}" ]]; then
+			git_prompt_color=$YELLOW
+			git_status="${git_status}${__git_ps1_upstream_state}"
 		fi
 		
-		git_prompt="(${git_status_color}${__git_ps1_prompt}${COLOR_NONE})"
+		if [[ -n "${__git_ps1_stash_state}" ]]; then
+			git_status="${git_status}${__git_ps1_stash_state}"
+		fi
+		
+		if [[ -n "${__git_ps1_dirty_state}" ]]; then
+			git_prompt_color=$RED
+			git_status="${git_status}${__git_ps1_dirty_state}"
+		fi
+		if [[ -n "${__git_ps1_untracked_state}" ]]; then
+			git_prompt_color=$RED
+			git_status="${git_status}${__git_ps1_untracked_state}"
+		fi
+		
+		if [[ -n "${git_status}" ]]; then
+			git_status=" ${git_status}"
+		fi
+		
+		git_prompt=" (${git_prompt_color}${__git_ps1_prompt}${COLOR_NONE}${git_status})"
 	fi
 	
-	
-	# prompt="${TITLEBAR}$BLUE[$RED\w$GREEN$(__git_ps1)$YELLOW$(git_dirty_flag)$BLUE]$COLOR_NONE "
 	prompt="\h:${LIGHT_BLUE}\W${COLOR_NONE}${git_prompt}"
-	# prompt="${BLUE}\w${COLOR_NONE}${git_prompt}"
+	
 	
 	if [[ $(id -u) == 0 ]]; then
 		user_prompt="#"
