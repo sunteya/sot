@@ -14,3 +14,9 @@
 	whitespace = nowarn
 [format]
 	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+
+[diff]
+	tool = araxis
+[merge]
+	tool = araxis
+
