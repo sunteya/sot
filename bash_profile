@@ -27,7 +27,7 @@ export PATH=$HOME/bin:$HOME/.bin:$PATH
 export HISTFILESIZE=3000
 export HISTSIZE=$HISTFILESIZE
 
-[ -f $HOME/.bash/bash-prompt.sh ] && source $HOME/.bash/bash-prompt.sh
+[ -f $HOME/.bash/prompts.sh ] && source $HOME/.bash/prompts.sh
 
 
 if [ -f ~/.bashrc ]; then
