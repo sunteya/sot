@@ -3,7 +3,7 @@ require "erb"
 desc "install sot's file to user's home directory"
 task :install do
   Dir["*"].each do |file|
-    next if %w[ bundler-exec.sh Rakefile README.md bash_completion.d bin ].include?(file)
+    next if %w[ Rakefile README.md bin ].include?(file)
     
     file_name = file.sub(".erb", "")
     target_file = "#{ENV['HOME']}/.#{file_name}"

@@ -1,3 +1,16 @@
+set completion-ignore-case on
+set completion-prefix-display-length 2
+set completion-map-case on
+
+control-j: menu-complete
+control-k: menu-complete-backward
+
 control-p: history-search-backward
 control-n: history-search-forward
 
+
+# [原创]自己使用csh/tcsh的经验
+# http://heikezhi.com/2011/09/15/my-experience-on-csh-tcsh/
+
+# 几个简单选项让你的Readline（Bash）更好用
+# http://heikezhi.com/2011/09/14/simple-readline-configuration-make-bash-more-friendly/
