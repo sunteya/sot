@@ -13,7 +13,7 @@
 [apply]
 	whitespace = nowarn
 [format]
-	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset
+	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset by %C(blue)%ae%Creset
 
 [diff]
 	tool = araxis
