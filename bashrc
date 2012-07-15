@@ -11,8 +11,9 @@ export HISTSIZE=$HISTFILESIZE
 
 if [ -n "$PS1" ]; then
 	# Settings
-	EDITOR="mate -w"
-	
+	export EDITOR="subl -w"
+	export GEM_EDITOR="subl"
+
 	source $HOME/.bash/completions.sh
 	source $HOME/.bash/colors.sh
 	source $HOME/.bash/alias.sh
@@ -23,3 +24,6 @@ fi
 if [ -r ~/.localrc ]; then
 	source ~/.localrc
 fi
+
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

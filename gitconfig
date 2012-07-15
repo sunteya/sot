@@ -7,7 +7,7 @@
 	ui = auto
 [core]
 	excludesfile = ~/.gitignore
-	editor = mate -w
+	editor = subl -w
 	autocrlf = false
 	quotepath = false
 [apply]
