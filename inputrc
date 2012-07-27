@@ -2,8 +2,8 @@ set completion-ignore-case on
 set completion-prefix-display-length 2
 set completion-map-case on
 
-control-j: menu-complete
-control-k: menu-complete-backward
+#control-j: menu-complete
+#control-k: menu-complete-backward
 
 control-p: history-search-backward
 control-n: history-search-forward
