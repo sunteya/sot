@@ -3,6 +3,7 @@
 	email = sunteya@gmail.com
 [alias]
 	co = checkout
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [color]
 	ui = auto
 [core]
@@ -13,10 +14,8 @@
 [apply]
 	whitespace = nowarn
 [format]
-	pretty = %C(yellow)%h%Creset %s %C(red)(%cr)%Creset by %C(blue)%ae%Creset
-
+	pretty = %C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr)%Creset by %C(blue)%an%Creset
 [diff]
 	tool = araxis
 [merge]
 	tool = araxis
-
