@@ -1,2 +1,10 @@
 --sort-files
 --color
+
+--ignore-dir=tmp/
+
+--type-add=ruby=.ru
+--type-add=ruby=.rake
+
+--type-add=css=.sass
+--type-add=css=.scss
