@@ -1,6 +1,6 @@
 # What's Sot ?
 
-sot is dot files and configs for myself. based on [https://github.com/ryanb/dotfiles](https://github.com/ryanb/dotfiles)
+sot is dot files and configs for myself.
 
 ## Installation
 
@@ -13,3 +13,4 @@ sot is dot files and configs for myself. based on [https://github.com/ryanb/dotf
 
 * [https://github.com/ryanb/dotfiles](https://github.com/ryanb/dotfiles)
 * [https://github.com/benhoskings/dot-files](https://github.com/benhoskings/dot-files)
+* [https://github.com/skwp/dotfiles](https://github.com/skwp/dotfiles)

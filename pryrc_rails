@@ -1,0 +1,42 @@
+#!/usr/bin/ruby
+
+begin
+  require 'hirb' # sudo gem install cldwalker-hirb --source http://gems.github.com
+  require "hirb-unicode"
+rescue LoadError
+end
+
+if defined? Hirb
+  # Slightly dirty hack to fully support in-session Hirb.disable/enable toggling
+  Hirb::View.instance_eval do
+    def enable_output_method
+      @output_method = true
+      @old_print = Pry.config.print
+      Pry.config.print = proc do |output, value|
+        Hirb::View.view_or_page_output(value) || @old_print.call(output, value)
+      end
+    end
+
+    def disable_output_method
+      Pry.config.print = @old_print
+      @output_method = nil
+    end
+  end
+  
+  Hirb.enable
+end
+
+
+
+def change_log(stream)
+  ActiveRecord::Base.logger = Logger.new(stream)
+  ActiveRecord::Base.clear_active_connections!
+end
+
+def show_log
+  change_log(STDOUT)
+end
+
+def hide_log
+  change_log(nil)
+end
