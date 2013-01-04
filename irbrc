@@ -18,6 +18,6 @@ end
 begin
   require 'pry'
   Pry.start
-  exit
+  # exit
 rescue LoadError => e
 end
