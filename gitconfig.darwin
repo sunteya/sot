@@ -1,0 +1,12 @@
+[core]
+	editor = subl -w
+
+[diff]
+	tool = araxis
+	# tool = Kaleidoscope
+
+[merge]
+	tool = araxis
+
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
