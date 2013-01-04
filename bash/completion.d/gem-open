@@ -4,8 +4,8 @@ _gemopencomplete() {
     local cur=${COMP_WORDS[COMP_CWORD]}
 
     case "$subcmd" in
-        open)
-            words=`ruby -rubygems -e 'puts Dir["{#{Gem::SourceIndex.installed_spec_directories.join(",")}}/*.gemspec"].collect {|s| File.basename(s).gsub(/\.gemspec$/, "")}'`
+        open | browse | uninstall )
+            words=`echo 'puts Dir["{#{Gem::Specification.dirs.join(",")}}/*.gemspec"].collect {|s| File.basename(s, ".gemspec").gsub(/-[^-]+$/, "") }' | ruby`
             ;;
         *)
             return
