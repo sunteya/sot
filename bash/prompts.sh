@@ -31,7 +31,7 @@ function __populate_git_ps1_vars () {
 			__git_ps1_untracked_state="%"
 		fi
 		
-		__git_ps1_show_upstream
+		__git_ps1_show_upstream 2> /dev/null
 		if [[ "=" != "${p}" ]]; then
 			__git_ps1_upstream_state="$p"
 		fi
