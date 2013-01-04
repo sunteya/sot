@@ -1,3 +1,5 @@
+#! bash
+
 _gemopencomplete() {
     local cmd=${COMP_WORDS[0]}
     local subcmd=${COMP_WORDS[1]}
@@ -8,7 +10,7 @@ _gemopencomplete() {
             words=`echo 'puts Dir["{#{Gem::Specification.dirs.join(",")}}/*.gemspec"].collect {|s| File.basename(s, ".gemspec").gsub(/-[^-]+$/, "") }' | ruby`
             ;;
         *)
-            return
+             words="browse build cert check cleanup clone contents ctags dependency edit environment fetch generate_index help install list lock migrate open outdated owner pristine push query rdoc regenerate_binstubs search server sources specification stale tumble uninstall unpack update webhook which yank";
             ;;
     esac
 
