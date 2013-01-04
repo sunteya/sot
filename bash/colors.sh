@@ -1,5 +1,4 @@
 export CLICOLOR='true'
-[ -n "${rvm_version}" ] && export rvm_pretty_print_flag=1
 
 if [ -x /usr/bin/dircolors ]; then
 	test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"

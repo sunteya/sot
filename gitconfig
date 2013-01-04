@@ -17,5 +17,10 @@
 	pretty = %C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr)%Creset by %C(blue)%an%Creset
 [diff]
 	tool = araxis
+	#tool = Kaleidoscope
 [merge]
 	tool = araxis
+[difftool "Kaleidoscope"]
+	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+[difftool]
+	prompt = false
