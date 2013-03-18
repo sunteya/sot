@@ -32,6 +32,9 @@ if [[ -d $HOME/.rvm/bin ]]; then
 	fi
 fi
 
+# This loads NVM
+[[ -s /Users/sunteya/.nvm/nvm.sh ]] && . /Users/sunteya/.nvm/nvm.sh 
+
 if [ -r ~/.localrc ]; then
 	source ~/.localrc
 fi
