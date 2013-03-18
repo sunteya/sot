@@ -15,9 +15,9 @@ if defined? Bundler
   load 'rubygems/custom_require.rb'
 end
 
-begin
-  require 'pry'
-  Pry.start
-  # exit
-rescue LoadError => e
-end
+# begin
+#   require 'pry'
+#   Pry.start
+#   # exit
+# rescue LoadError => e
+# end
