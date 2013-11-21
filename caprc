@@ -1,6 +1,1 @@
-begin
-  require 'capistrano_colors'
-rescue LoadError => e
-end
-
 default_run_options[:pty] = true
