@@ -1,10 +1,15 @@
 # Break out of the Bundler jail
 # from https://github.com/ConradIrwin/pry-debundle/blob/master/lib/pry-debundle.rb
-if defined? Bundler
-  Gem.post_reset_hooks.reject! { |hook| hook.source_location.first =~ %r{/bundler/} }
+if Gem.post_reset_hooks.reject!{ |hook| hook.source_location.first =~ %r{/bundler/} }
   Gem::Specification.reset
-  load 'rubygems/custom_require.rb'
+
+  if Gem::VERSION.to_i >= 2
+    load 'rubygems/core_ext/kernel_require.rb'
+  else
+    load 'rubygems/custom_require.rb'
+  end
 end
+
 
 begin
   require "pry-nav"
@@ -26,4 +31,4 @@ begin
 rescue LoadError => err
 end
 
-load ENV["HOME"] + '/.pryrc_rails' if $0 == "script/rails"
+load ENV["HOME"] + '/.pryrc_rails' if [ "bin/rails", "script/rails" ].include?($0)
