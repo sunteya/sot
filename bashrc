@@ -21,15 +21,10 @@ if [[ "$(uname)" == "Darwin" ]]; then # MAC
 	source $HOME/.bash/darwin.sh
 fi
 
-# RVM
-if [[ -d $HOME/.rvm/bin ]]; then
-	export PATH=$PATH:$HOME/.rvm/bin
-	
-	if [[ -n "$PS1" ]]; then
-		export rvm_pretty_print_flag=1
-		source $HOME/.rvm/scripts/rvm
-		[[ -r $rvm_path/scripts/completion ]] && source $rvm_path/scripts/completion
-	fi
+# rbenv
+if [[ -d $HOME/.rbenv/bin ]]; then
+	export PATH=$HOME/.rbenv/bin:$PATH
+	eval "$(rbenv init -)"
 fi
 
 # This loads NVM
