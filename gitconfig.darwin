@@ -2,11 +2,16 @@
 	editor = subl -w
 
 [diff]
-	tool = araxis
-	# tool = Kaleidoscope
+	# tool = araxis
+	tool = Kaleidoscope
 
 [merge]
-	tool = araxis
+	# tool = araxis
+	tool = Kaleidoscope
 
 [difftool "Kaleidoscope"]
-	cmd = ksdiff-wrapper git \"$LOCAL\" \"$REMOTE\"
+	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
+[mergetool "Kaleidoscope"]
+	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+	trustExitCode = true
