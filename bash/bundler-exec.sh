@@ -1,7 +1,7 @@
 #!/bin/bash
 # reference by http://effectif.com/ruby/automating-bundle-exec
 
-BUNDLED_COMMANDS="${BUNDLED_COMMANDS:-cap capify cucumber heroku rackup rails rake rspec ruby shotgun spec spork thin unicorn unicorn_rails}"
+BUNDLED_COMMANDS="${BUNDLED_COMMANDS:-cap capify cucumber heroku cap rackup rails rake rspec ruby shotgun spec spork thin unicorn unicorn_rails}"
 
 ## Functions
 

@@ -5,7 +5,6 @@ local_bashrc_running=1
 [ -r ~/.profile -a -z "${local_profile_loaded}" ] && source ~/.profile
 unset local_bashrc_running
 
-
 # Bash Settings
 export HISTFILESIZE=8000
 export HISTSIZE=$HISTFILESIZE
