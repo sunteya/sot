@@ -11,6 +11,25 @@ if Gem.post_reset_hooks.reject!{ |hook| hook.source_location.first =~ %r{/bundle
   end
 end
 
+# Pry::Commands.block_command('enable-pry', 'Enable `binding.pry` feature') do
+#   ENV['DISABLE_PRY'] = nil
+# end
+
+begin
+  require "pry-stack_explorer"
+  require "pry-rescue"
+rescue LoadError => e
+end
+
+begin
+  require "pry-highlight"
+rescue LoadError => e
+end
+
+begin
+  require "pry-toys"
+rescue LoadError => e
+end
 
 begin
   require "pry-nav"
@@ -27,8 +46,8 @@ rescue LoadError => e
 end
 
 begin
-  require 'awesome_print' 
-  # Pry.config.print = proc { |output, value| output.puts value.ai }
+  require 'awesome_print'
+  # AwesomePrint.pry!
 rescue LoadError => err
 end
 
