@@ -26,9 +26,6 @@ if [[ -d $HOME/.rbenv/bin ]]; then
 	eval "$(rbenv init -)"
 fi
 
-# This loads NVM
-[[ -s /Users/sunteya/.nvm/nvm.sh ]] && . /Users/sunteya/.nvm/nvm.sh 
-
 if [ -r ~/.localrc ]; then
 	source ~/.localrc
 fi
