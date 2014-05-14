@@ -1,9 +1,0 @@
-[include]
-	path = ~/.sot/gitconfig.darwin
-
-[user]
-	name = sunteya
-	email = sunteya@gmail.com
-
-[github-flow]
-	username = sunteya
