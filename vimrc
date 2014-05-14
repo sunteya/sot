@@ -126,4 +126,6 @@ set numberwidth=5
 set ignorecase
 set smartcase
 
-
+" VIM Mouse Scrolling
+set mouse=a
+set ttymouse=xterm
