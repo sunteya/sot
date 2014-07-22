@@ -21,10 +21,10 @@ if [[ "$(uname)" == "Darwin" ]]; then # MAC
 fi
 
 # rbenv
-if [[ -d $HOME/.rbenv/bin ]]; then
-	export PATH=$HOME/.rbenv/bin:$PATH
-	eval "$(rbenv init -)"
-fi
+#if [[ -d $HOME/.rbenv/bin ]]; then
+#	export PATH=$HOME/.rbenv/bin:$PATH
+#	eval "$(rbenv init -)"
+#fi
 
 if [ -r ~/.localrc ]; then
 	source ~/.localrc
