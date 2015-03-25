@@ -18,37 +18,44 @@ end
 begin
   require "pry-stack_explorer"
   require "pry-rescue"
-rescue LoadError => e
+rescue LoadError
 end
 
 begin
   require "pry-highlight"
-rescue LoadError => e
+rescue LoadError
 end
 
-begin
-  require "pry-toys"
-rescue LoadError => e
-end
+# begin
+#   require "pry-toys"
+# rescue LoadError => e
+# end
 
 begin
-  require "pry-nav"
-  Pry.commands.alias_command 'c', 'continue'
-  Pry.commands.alias_command 's', 'step'
-  Pry.commands.alias_command 'n', 'next'
-rescue LoadError => e
+  require "pry-byebug"
+  if defined?(PryByebug)
+    # Pry.commands.alias_command 'c', 'continue'
+    # Pry.commands.alias_command 's', 'step'
+    # Pry.commands.alias_command 'n', 'next'
+    # Pry.commands.alias_command 'f', 'finish'
+    Pry.commands["s"] = nil
+    Pry.commands["c"] = nil
+    Pry.commands["n"] = nil
+    Pry.commands["f"] = nil
+  end
+rescue LoadError
 end
 
 begin
   require "pry-theme"
   Pry.config.theme = "railscasts"
-rescue LoadError => e
+rescue LoadError
 end
 
 begin
   require 'awesome_print'
   # AwesomePrint.pry!
-rescue LoadError => err
+rescue LoadError
 end
 
 Pry.config.pager = false
