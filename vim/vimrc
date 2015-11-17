@@ -20,6 +20,8 @@ call plug#begin() "{{{
   " ===================
   " Editor
   " -------------------
+  Plug 'wikitopian/hardmode'
+
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-commentary'
@@ -30,12 +32,17 @@ call plug#begin() "{{{
   Plug 'terryma/vim-expand-region'
   Plug 'matze/vim-move'
   Plug 'tpope/vim-eunuch'
+  Plug 'Lokaltog/vim-easymotion'
 
   Plug 'tpope/vim-rsi'
   Plug 'rking/ag.vim'
   Plug 'dhruvasagar/vim-table-mode'
 
-  Plug 'Shougo/neocomplete.vim'
+  if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+  else
+    Plug 'Shougo/neocomplete.vim'
+  endif
   Plug 'kien/ctrlp.vim'
 
   " Git
@@ -55,7 +62,7 @@ call plug#begin() "{{{
 
   " Plug 'itchyny/lightline.vim'
   Plug 'bling/vim-airline'
-  Plug 'bling/vim-bufferline'
+  " Plug 'bling/vim-bufferline'
 
 
   " ===================
@@ -148,8 +155,13 @@ set foldlevel=10
 " vim-table-mode
 let g:table_mode_corner="|"
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
+if has('nvim')
+  " Use deoplete.
+  let g:deoplete#enable_at_startup = 1
+else
+  " neocomplete
+  let g:neocomplete#enable_at_startup = 1
+endif
 
 " }}}
 
@@ -213,7 +225,10 @@ endif
 let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline_section_z = airline#section#create(['%{&tabstop}:%{&shiftwidth}',' %3p%% ',g:airline_symbols.linenr,'%3l:%c'])
+let g:airline#extensions#tabline#enabled = 1
 
+
+let NERDTreeMinimalUI=1
 
 
 " ===================
@@ -270,11 +285,6 @@ vmap <Leader>d "+d
 vmap <Leader>p "+p
 vmap <Leader>p "+p
 
-map <Up> <nop>
-map <Down> <nop>
-map <Left> <nop>
-map <Right> <nop>
-
 map <C-Down> <C-w>j
 map <C-Up> <C-w>k
 map <C-Left> <C-w>h
@@ -308,6 +318,11 @@ nmap <D-]> >>
 vmap <D-[> <gv
 vmap <D-]> >gv
 
+" Toggle NERDTreeTabs
+map <Leader>n <plug>NERDTreeTabsToggle<CR>
+
+let g:HardMode_level = 'wannabe'
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 
 " ===================
