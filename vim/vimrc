@@ -22,6 +22,7 @@ call plug#begin() "{{{
   " -------------------
   Plug 'wikitopian/hardmode'
 
+  " Plug 'Yggdroot/indentLine'
   Plug 'terryma/vim-multiple-cursors'
   Plug 'jiangmiao/auto-pairs'
   Plug 'tpope/vim-commentary'
@@ -33,6 +34,7 @@ call plug#begin() "{{{
   Plug 'matze/vim-move'
   Plug 'tpope/vim-eunuch'
   Plug 'Lokaltog/vim-easymotion'
+  Plug 'tpope/vim-surround'
 
   Plug 'tpope/vim-rsi'
   Plug 'rking/ag.vim'
@@ -60,9 +62,7 @@ call plug#begin() "{{{
   Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'jistr/vim-nerdtree-tabs'
 
-  " Plug 'itchyny/lightline.vim'
   Plug 'bling/vim-airline'
-  " Plug 'bling/vim-bufferline'
 
 
   " ===================
@@ -82,7 +82,6 @@ call plug#begin() "{{{
 
   Plug 'kchmck/vim-coffee-script'
 
-"  Plug 'tpope/vim-surround'
 "  Plug 'mhinz/vim-startify'
 "  Plug 'kshenoy/vim-signature'
 "  Plug 'scrooloose/syntastic'
