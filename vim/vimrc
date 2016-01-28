@@ -146,7 +146,7 @@ autocmd BufReadPost *
     \ endif
 
 " Automatically load .vimrc source when saved
-autocmd BufWritePost .vimrc source $MYVIMRC
+" autocmd BufWritePost .vimrc source $MYVIMRC
 
 
 set foldlevel=10
@@ -263,7 +263,9 @@ cmap w!! w !sudo tee % >/dev/null
 " No help, please
 nmap <F1> <Esc>
 
-nmap <Leader>q :q<CR>
+nmap <Leader>q :bn<bar>bd#<CR>
+nmap <Leader><Leader>q :q!<CR>
+nmap <Leader>w :w<CR>
 
 " Move vertically by visual line
 nnoremap j gj
