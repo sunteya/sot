@@ -340,7 +340,7 @@ autocmd FileType vim setlocal foldmethod=marker
 "  Miscellaneous
 " -------------------
 " Local config
-if filereadable(".vimrc.local")
-  source .vimrc.local
+if filereadable(glob(".vimrc.local"))
+  source ~/.vimrc.local
 endif
 
