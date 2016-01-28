@@ -322,8 +322,8 @@ vmap <D-]> >gv
 " Toggle NERDTreeTabs
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 
-let g:HardMode_level = 'wannabe'
-autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+" let g:HardMode_level = 'wannabe'
+" autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
 
 " ===================
