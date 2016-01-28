@@ -72,6 +72,7 @@ call plug#begin() "{{{
   Plug 'tpope/vim-endwise'
 
   Plug 'mattn/emmet-vim'
+  Plug 'chrisbra/Colorizer'
 
   " ruby
   Plug 'vim-ruby/vim-ruby'
@@ -237,6 +238,7 @@ let NERDTreeMinimalUI=1
 " vim-textobj-rubyblock required
 " runtime macros/matchit.vim
 
+let g:colorizer_auto_color = 1
 
 
 
