@@ -35,6 +35,8 @@ call plug#begin() "{{{
   Plug 'tpope/vim-eunuch'
   Plug 'Lokaltog/vim-easymotion'
   Plug 'tpope/vim-surround'
+  Plug 'dkprice/vim-easygrep'
+  Plug 'wesQ3/vim-windowswap'
 
   Plug 'tpope/vim-rsi'
   Plug 'rking/ag.vim'
@@ -63,18 +65,21 @@ call plug#begin() "{{{
   Plug 'jistr/vim-nerdtree-tabs'
 
   Plug 'bling/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
 
 
   " ===================
   " Languages
   " -------------------
   Plug 'tpope/vim-sleuth'
-  Plug 'tpope/vim-endwise'
 
   Plug 'mattn/emmet-vim'
   Plug 'chrisbra/Colorizer'
 
+  Plug 'dag/vim-fish'
+
   " ruby
+  Plug 'tpope/vim-endwise'
   Plug 'vim-ruby/vim-ruby'
   Plug 'tpope/vim-rails'
   Plug 'kana/vim-textobj-user'
@@ -82,24 +87,24 @@ call plug#begin() "{{{
   Plug 'rking/pry-de', { 'rtp': 'vim' }
 
   Plug 'kchmck/vim-coffee-script'
+  Plug 'isRuslan/vim-es6'
 
-"  Plug 'mhinz/vim-startify'
-"  Plug 'kshenoy/vim-signature'
-"  Plug 'scrooloose/syntastic'
-"
-"
-"  Plug 'vim-scripts/localrc.vim'
-"
-""   " Plug 'svermeulen/vim-easyclip'
-" Plug 'easymotion/vim-easymotion'
-"
-"  " neobundle 'tommcdo/vim-exchange'
-"  " neobundle 'bronson/vim-visual-star-search'
-"  " neobundle 'godlygeek/tabular'
+
+  " Plug 'mhinz/vim-startify'
+  " Plug 'kshenoy/vim-signature'
+  " Plug 'scrooloose/syntastic'
+
+  " Plug 'vim-scripts/localrc.vim'
+
+  " Plug 'svermeulen/vim-easyclip'
+  " Plug 'easymotion/vim-easymotion'
+
+  " neobundle 'tommcdo/vim-exchange'
+  " neobundle 'bronson/vim-visual-star-search'
+  " neobundle 'godlygeek/tabular'
 call plug#end()
 
 " }}}
-
 
 
 " ===================
@@ -238,7 +243,7 @@ let NERDTreeMinimalUI=1
 " vim-textobj-rubyblock required
 " runtime macros/matchit.vim
 
-let g:colorizer_auto_color = 1
+let g:colorizer_auto_filetype='css,html,scss'
 
 
 
@@ -266,19 +271,24 @@ cmap w!! w !sudo tee % >/dev/null
 nmap <F1> <Esc>
 
 nmap <Leader>q :bn<bar>bd#<CR>
-nmap <Leader><Leader>q :q!<CR>
+nmap <Leader><Leader>q :q<CR>
 nmap <Leader>w :w<CR>
+
+nmap <Leader>cn :w<CR>:cn<CR>
 
 " Move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
-" Move to beginning/end of line
-nnoremap B ^
-nnoremap E $
-
 " Hide search highlighting
 map <Leader>h :set invhls<CR>
+
+" Saner behavior of n and N
+nnoremap <expr> n 'Nn'[v:searchforward]
+nnoremap <expr> N 'nN'[v:searchforward]
+
+" Quickly edit your macros
+nnoremap <leader>m  :<c-u><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
 " Copy & paste to system clipboard
 nmap <Leader>p "+p
@@ -327,6 +337,9 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " let g:HardMode_level = 'wannabe'
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
+" Don't lose selection when shifting sidewards
+xnoremap >  >gv
+xnoremap <  <gv
 
 " ===================
 "  FileTypes {{{
@@ -334,6 +347,8 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " autocmd FileType ruby setlocal expandtab shiftwidth=2 tabstop=2
 " autocmd FileType vim setlocal expandtab shiftwidth=2 tabstop=2
 autocmd FileType vim setlocal foldmethod=marker
+autocmd BufRead,BufNewFile .eslintrc setfiletype yaml
+autocmd FileType scss setlocal expandtab shiftwidth=2 tabstop=2
 " }}}
 
 
