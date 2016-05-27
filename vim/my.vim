@@ -10,12 +10,11 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+source ~/.vim/sensible.vim
+source ~/.vim/basic.vim
 
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin() "{{{
-
-  " Common Defaults
-  Plug 'tpope/vim-sensible'
 
   " ===================
   " Editor
@@ -85,6 +84,7 @@ call plug#begin() "{{{
   Plug 'kana/vim-textobj-user'
   Plug 'nelstrom/vim-textobj-rubyblock'
   Plug 'rking/pry-de', { 'rtp': 'vim' }
+  Plug 'skalnik/vim-vroom'
 
   Plug 'kchmck/vim-coffee-script'
   Plug 'isRuslan/vim-es6'
@@ -110,26 +110,6 @@ call plug#end()
 " ===================
 " Editor {{{
 " -------------------
-set nowritebackup
-
-" Tabs, 4 spaces
-set tabstop=4
-set shiftwidth=4
-set noexpandtab
-
-" Command mode completion like bash
-set wildmode=longest,list
-
-" Switch wrap off for everything
-set nowrap
-
-" Case only matters with mixed case expressions
-" set ignorecase
-set smartcase
-
-" Vim mouse scrolling
-set mouse=a
-" set ttymouse=xterm
 
 " The Silver Searcher
 if executable('ag')
@@ -142,18 +122,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
-
-" When editing a file, always jump to the last known cursor position.
-" Don't do it when the position is invalid or when inside an event handler
-" (happens when dropping a file on gvim).
-autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
-
-" Automatically load .vimrc source when saved
-" autocmd BufWritePost .vimrc source $MYVIMRC
-
 
 set foldlevel=10
 
@@ -174,18 +142,6 @@ endif
 " ===================
 " Appearance
 " -------------------
-
-" Numbers
-set number
-set numberwidth=5
-
-" highlight matches
-set hlsearch
-
-" Display extra whitespace
-" Use the same symbols as textmate for tabstops and eols
-set list listchars=tab:▸\ ,trail:.,extends:>,eol:¬
-" set list listchars=tab:»·,trail:.,extends:>,eol:¶
 
 if has("gui_running") && !empty(globpath(&rtp, "colors/base16-monokai.vim"))
   set background=dark
@@ -263,40 +219,23 @@ while c <= 'z'
   let c = nr2char(1+char2nr(c))
 endw
 
-
 " Write with sudo
 cmap w!! w !sudo tee % >/dev/null
 
-" No help, please
-nmap <F1> <Esc>
-
-nmap <Leader>q :bn<bar>bd#<CR>
 nmap <Leader><Leader>q :q<CR>
 nmap <Leader>w :w<CR>
 
 nmap <Leader>cn :w<CR>:cn<CR>
-
-" Move vertically by visual line
-nnoremap j gj
-nnoremap k gk
-
-" Hide search highlighting
-map <Leader>h :set invhls<CR>
-
-" Saner behavior of n and N
-nnoremap <expr> n 'Nn'[v:searchforward]
-nnoremap <expr> N 'nN'[v:searchforward]
 
 " Quickly edit your macros
 nnoremap <leader>m  :<c-u><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
 " Copy & paste to system clipboard
 nmap <Leader>p "+p
-nmap <Leader>p "+p
+nmap <Leader>P "+P
 vmap <Leader>y "+y
-vmap <Leader>d "+d
 vmap <Leader>p "+p
-vmap <Leader>p "+p
+vmap <Leader>P "+P
 
 map <C-Down> <C-w>j
 map <C-Up> <C-w>k
@@ -321,8 +260,6 @@ map <Leader>te :tabe <C-R>=expand("%:p:h") . "/" <CR>
 " Press ^F from insert mode to insert the current file name
 " imap <C-F> <C-R>=expand("%")<CR>
 
-" imap <C-L> <Space>=><Space>
-
 nmap <Leader><Leader> V
 
 " CMD only works in MacVim
@@ -337,10 +274,6 @@ map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " let g:HardMode_level = 'wannabe'
 " autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 
-" Don't lose selection when shifting sidewards
-xnoremap >  >gv
-xnoremap <  <gv
-
 " ===================
 "  FileTypes {{{
 " -------------------
@@ -352,7 +285,6 @@ autocmd FileType scss setlocal expandtab shiftwidth=2 tabstop=2
 " }}}
 
 
-
 " ===================
 "  Miscellaneous
 " -------------------
@@ -360,4 +292,3 @@ autocmd FileType scss setlocal expandtab shiftwidth=2 tabstop=2
 if filereadable(glob(".vimrc.local"))
   source ~/.vimrc.local
 endif
-
