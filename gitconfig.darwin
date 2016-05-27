@@ -1,13 +1,13 @@
-[core]
-	editor = subl -w
-
-[diff]
-	# tool = araxis
-	tool = Kaleidoscope
-
-[merge]
-	# tool = araxis
-	tool = Kaleidoscope
+# [core]
+# 	editor = subl -w
+#
+# [diff]
+# 	tool = araxis
+# 	# tool = Kaleidoscope
+#
+# [merge]
+# 	tool = araxis
+# 	# tool = Kaleidoscope
 
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
@@ -15,3 +15,9 @@
 [mergetool "Kaleidoscope"]
 	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
 	trustExitCode = true
+
+[mergetool "araxis"]
+	path = /Users/sunteya/Applications/Araxis Merge.app/Contents/Utilities/compare
+
+[difftool "araxis"]
+	path = /Users/sunteya/Applications/Araxis Merge.app/Contents/Utilities/compare
