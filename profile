@@ -1,5 +1,11 @@
 export local_profile_loaded=1
 
+
+if [ "UTF-8" == "$LC_CTYPE" ]; then
+	export LANG=en_US.UTF-8
+	export LC_CTYPE=en_US.UTF-8
+fi
+
 # Path Setting
 if [ "$(uname)" == "Darwin" ]; then
 	export PATH=/usr/local/bin:/usr/local/sbin:$PATH
