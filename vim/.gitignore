@@ -1,3 +1,6 @@
-/plugged/
-/autoload/
-.netrwhist
+/.tags
+/.tags1
+/autoload
+/bundle
+/plugged
+

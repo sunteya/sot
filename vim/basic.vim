@@ -56,3 +56,5 @@ nnoremap <expr> N 'nN'[v:searchforward]
 xnoremap >  >gv
 xnoremap <  <gv
 
+" Write with sudo
+cmap w!! w !sudo tee % >/dev/null
