@@ -2,7 +2,7 @@ function __populate_git_ps1_vars () {
 	if ! $(type __git_ps1 >/dev/null 2>&1); then
 		return
 	fi
-	
+
 	unset GIT_PS1_SHOWDIRTYSTATE
 	unset GIT_PS1_SHOWSTASHSTATE
 	unset GIT_PS1_SHOWUNTRACKEDFILES
@@ -11,8 +11,7 @@ function __populate_git_ps1_vars () {
 	if test -z "${__git_ps1_prompt}"; then
 		return
 	fi
-	
-	
+
 	__git_ps1_dirty_state=""
 	__git_ps1_stash_state=""
 	__git_ps1_untracked_state=""
@@ -24,13 +23,13 @@ function __populate_git_ps1_vars () {
 		else
 			__git_ps1_dirty_state="#"
 		fi
-		
+
 		git rev-parse --verify refs/stash >/dev/null 2>&1 && __git_ps1_stash_state="$"
-		
+
 		if [ -n "$(git ls-files --others --exclude-standard)" ]; then
 			__git_ps1_untracked_state="%"
 		fi
-		
+
 		__git_ps1_show_upstream 2> /dev/null
 		if [[ "=" != "${p}" ]]; then
 			__git_ps1_upstream_state="$p"
@@ -59,22 +58,22 @@ LIGHT_MAGENTA="\[\e[95m\]"
 
 function prompt_func() {
 	previous_return_value=$?;
-	
+
 	__populate_git_ps1_vars;
 	git_prompt=""
 	if [[ -n "${__git_ps1_prompt}" ]]; then
 		git_prompt_color=$GREEN
 		git_status=""
-		
+
 		if [[ -n "${__git_ps1_upstream_state}" ]]; then
 			git_prompt_color=$YELLOW
 			git_status="${git_status}${__git_ps1_upstream_state}"
 		fi
-		
+
 		if [[ -n "${__git_ps1_stash_state}" ]]; then
 			git_status="${git_status}${__git_ps1_stash_state}"
 		fi
-		
+
 		if [[ -n "${__git_ps1_dirty_state}" ]]; then
 			git_prompt_color=$RED
 			git_status="${git_status}${__git_ps1_dirty_state}"
@@ -83,23 +82,23 @@ function prompt_func() {
 			git_prompt_color=$RED
 			git_status="${git_status}${__git_ps1_untracked_state}"
 		fi
-		
+
 		if [[ -n "${git_status}" ]]; then
 			git_status=" ${git_status}"
 		fi
-		
+
 		git_prompt=" (${git_prompt_color}${__git_ps1_prompt}${COLOR_NONE}${git_status})"
 	fi
-	
+
 	prompt="${LIGHT_GREEN}\h:${LIGHT_BLUE}\w${COLOR_NONE}${git_prompt}"
-	
-	
+
+
 	if [[ $(id -u) == 0 ]]; then
 		user_prompt="#"
 	else
 		user_prompt="$"
 	fi
-	
+
 	if test $previous_return_value -eq 0; then
 		PS1="${prompt} ${user_prompt} ${COLOR_NONE}"
 	else
@@ -108,5 +107,5 @@ function prompt_func() {
 }
 
 PROMPT_COMMAND="prompt_func; $PROMPT_COMMAND"
-
-
+# GIT_PS1_SHOWCOLORHINTS=true
+# PROMPT_COMMAND='__git_ps1 "\u@\h:\w" "\\\$ "'

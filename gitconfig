@@ -7,7 +7,7 @@
 
 [core]
 	excludesfile = ~/.gitignore
-	autocrlf = false
+	autocrlf = input
 	quotepath = false
 
 [apply]
@@ -24,3 +24,10 @@
 
 [include]
 	path = ~/.gitconfig.local
+[fetch]
+	prune = false
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
