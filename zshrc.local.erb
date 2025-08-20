@@ -1,0 +1,20 @@
+bindkey -e
+source ${ZIM_HOME}/init.zsh
+
+starship init zsh | pipe-eval
+
+lua /opt/homebrew/opt/z.lua/share/z.lua/z.lua --init zsh | pipe-eval
+alias zf='z -I'
+
+mise activate zsh | pipe-eval
+
+alias rake="bundle exec rake"
+alias cap="bundle exec cap"
+alias rails="bundle exec rails"
+alias rspec="bundle exec rspec"
+alias annotate="bundle exec annotate"
+alias rubocop="bundle exec rubocop"
+alias fastlane="bundle exec fastlane"
+alias ls="eza"
+
+export BUNDLER_EDITOR=cursor

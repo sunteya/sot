@@ -1,3 +1,4 @@
 oh-my-fish/theme-default
-fishpkg/fish-git-util
 barnybug/docker-fish-completion
+~/.oh-my-fish/lib/git
+skywind3000/z.lua

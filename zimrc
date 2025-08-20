@@ -1,0 +1,11 @@
+zmodule environment
+zmodule input
+zmodule utility
+zmodule completion
+
+zmodule fzf
+zmodule direnv
+zmodule zsh-users/zsh-syntax-highlighting
+zmodule zsh-users/zsh-autosuggestions
+
+zmodule marlonrichert/zsh-hist
