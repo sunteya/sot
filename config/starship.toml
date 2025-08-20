@@ -1,0 +1,191 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+
+add_newline = false
+format = """
+$username\
+$hostname\
+$directory\
+${custom.conda_env}\
+${custom.git_branch_filtered}\
+$git_status\
+$character
+"""
+[username]
+format = '[$user]($style)@'
+
+[hostname]
+# ssh_only = false
+
+[directory]
+fish_style_pwd_dir_length = 1
+
+[custom.conda_env]
+command = '''
+if [ ${#CONDA_DEFAULT_ENV} -gt 14 ]; then
+    echo "@${CONDA_DEFAULT_ENV:0:13}…"
+else
+    echo "@${CONDA_DEFAULT_ENV}"
+fi
+'''
+shell = ["bash", "--noprofile", "--norc"]
+when = 'test -n "$CONDA_DEFAULT_ENV"'
+style = "bold green"
+
+[custom.git_branch_filtered]
+command = """
+branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+if [[ "$branch" == "master" || "$branch" == "main" ]]; then
+    echo ""
+elif [[ -n "$branch" ]]; then
+    echo " $branch"
+fi
+"""
+shell = ["bash", "--noprofile", "--norc"]
+when = "git rev-parse --is-inside-work-tree"
+style = "bold purple"
+
+[conda]
+symbol = '@'
+format = '[$symbol$environment]($style) '
+
+[character]
+format = '$symbol'
+success_symbol = ''
+error_symbol = '[⨯](bold red) '
+
+# [git_status]
+# format = '([\[$all_status$ahead_behind\]]($style))'
+
+# [golang]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [gradle]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [guix_shell]
+# format = '\[[$symbol]($style)\]'
+
+# [haskell]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [haxe]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [helm]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [hg_branch]
+# format = '\[[$symbol$branch]($style)\]'
+
+# [java]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [julia]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [kotlin]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [kubernetes]
+# format = '\[[$symbol$context( \($namespace\))]($style)\]'
+
+# [lua]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [memory_usage]
+# format = '\[$symbol[$ram( | $swap)]($style)\]'
+
+# [meson]
+# format = '\[[$symbol$project]($style)\]'
+
+# [nim]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [nix_shell]
+# format = '\[[$symbol$state( \($name\))]($style)\]'
+
+# [nodejs]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [ocaml]
+# format = '\[[$symbol($version)(\($switch_indicator$switch_name\))]($style)\]'
+
+# [opa]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [openstack]
+# format = '\[[$symbol$cloud(\($project\))]($style)\]'
+
+# [os]
+# format = '\[[$symbol]($style)\]'
+
+# [package]
+# format = '\[[$symbol$version]($style)\]'
+# disabled = true
+
+# [perl]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [php]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [pijul_channel]
+# format = '\[[$symbol$channel]($style)\]'
+
+# [pixi]
+# format = '\[[$symbol$version( $environment)]($style)\]'
+
+# [pulumi]
+# format = '\[[$symbol$stack]($style)\]'
+
+# [purescript]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [python]
+# format = '\[[${symbol}${pyenv_prefix}(${version})(\($virtualenv\))]($style)\]'
+
+# [raku]
+# format = '\[[$symbol($version-$vm_version)]($style)\]'
+
+# [red]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [ruby]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [rust]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [scala]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [spack]
+# format = '\[[$symbol$environment]($style)\]'
+
+# [sudo]
+# format = '\[[as $symbol]($style)\]'
+
+# [swift]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [terraform]
+# format = '\[[$symbol$workspace]($style)\]'
+
+# [time]
+# format = '\[[$time]($style)\]'
+
+# [username]
+# format = '\[[$user]($style)\]'
+
+# [vagrant]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [vlang]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [zig]
+# format = '\[[$symbol($version)]($style)\]'
+
+# [solidity]
+# format = '\[[$symbol($version)]($style)\]'
