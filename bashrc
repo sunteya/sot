@@ -1,4 +1,5 @@
 #! bash
+
 [ -n "${local_bashrc_running}" ] && return
 local_bashrc_running=1
 [ -r /etc/bashrc -a -z "${system_bashrc_runned}" ] && source /etc/bashrc
@@ -23,3 +24,4 @@ fi
 if [ -r ~/.localrc ]; then
 	source ~/.localrc
 fi
+

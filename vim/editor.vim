@@ -27,6 +27,10 @@ call neobundle#append()
 
   " Narrow search
   NeoBundle 'Shougo/denite.nvim'
+  if !has('nvim')
+    NeoBundle 'roxma/nvim-yarp'
+    NeoBundle 'roxma/vim-hug-neovim-rpc'
+  endif
 
   " Code completion
   if has('nvim')
@@ -35,6 +39,8 @@ call neobundle#append()
     NeoBundle 'Shougo/neocomplete.vim'
   endif
 call neobundle#end()
+
+
 
 " ===================
 "  NERDTree
@@ -79,7 +85,28 @@ endif
 " ===================
 "  Denite
 " -------------------
-nmap <C-p> :Denite file_rec buffer<CR>
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR>
+  \ denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d
+  \ denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p
+  \ denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q
+  \ denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i
+  \ denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space>
+  \ denite#do_map('toggle_select').'j'
+  nnoremap <silent><buffer><expr> r
+  \ denite#do_map('do_action', 'quickfix')
+endfunction
+
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command', ['git', 'ls-files', '-co', '--exclude-standard'])
+nnoremap <silent> <C-p> :<C-u>Denite `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
+
 
 " ===================
 "  Keymap
@@ -91,6 +118,7 @@ nmap <Leader>w :w<CR>
 " Copy & paste to system clipboard
 nmap <Leader>p "+p
 nmap <Leader>P "+P
+nmap <Leader>yy "+yy
 vmap <Leader>y "+y
 vmap <Leader>p "+p
 vmap <Leader>P "+P

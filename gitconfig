@@ -14,7 +14,7 @@
 	whitespace = nowarn
 
 [format]
-	pretty = %C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr)%Creset by %C(blue)%an%Creset
+	pretty = %C(yellow)%h%Creset -%C(red)%d%Creset %s %C(green)(%cr | %cs)%Creset by %C(blue)%an%Creset
 
 [push]
 	default = simple
@@ -24,8 +24,10 @@
 
 [include]
 	path = ~/.gitconfig.local
+
 [fetch]
 	prune = false
+
 [filter "lfs"]
 	process = git-lfs filter-process
 	required = true

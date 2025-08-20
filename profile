@@ -12,10 +12,10 @@ fi
 
 # Path Setting
 if [ "$(uname)" == "Darwin" ]; then
-	export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+	export PATH=/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$PATH
 	export MANPATH=/usr/local/man:/usr/local/share/man:/usr/share/man:$MANPATH
 
-	export JAVA_HOME=/Library/Java/Home
+	#export JAVA_HOME=$(/usr/libexec/java_home)
 	export JAVA_TOOL_OPTIONS="-Duser.language=en -Duser.country=US"
 fi
 

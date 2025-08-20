@@ -61,3 +61,5 @@ end
 Pry.config.pager = false
 
 load ENV["HOME"] + '/.pryrc_rails' if [ "bin/rails", "script/rails" ].include?($0)
+
+# IRB.conf[:USE_MULTILINE] = false

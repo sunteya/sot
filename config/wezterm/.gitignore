@@ -1,0 +1,8 @@
+/.luarocks/
+/lua_modules
+/*.rockspec
+/.specstory/
+/.cursorindexingignore
+/vendor/
+
+/wezterm.local.lua
